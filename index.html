@@ -11,29 +11,35 @@
 <body>
     <div class="btn-container">
         <span class="title">Notes</span>
-        <button class="add-btn">
+        <button id="add-btn">
             <img class='img-add' src="./imgs/img_add.png" alt="Botão Adicionar">
         </button>
     </div>
     <div class="note-container">
         <div class="note">
             <span class="note-title">Nota 1</span>
-            <span class="note-description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            <span class="note-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                 tempor incididunt</span>
         </div>
-        <div class="note">
-            <span class="note-title">Nota 1</span>
-            <span class="note-description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt</span>
+        <div id="popup">
+            <input type="text" name="" id="title-add" placeholder="Título da nota">
+            <input type="text" name="" id="description-add" placeholder="Descrição da nota">
+            <div class="color-container">
+                <div class="color-picker">
+                    <div class="color-circle" data-color="#f44336" style="background-color: #f44336;"></div>
+                    <div class="color-circle" data-color="#4caf50" style="background-color: #4caf50;"></div>
+                    <div class="color-circle" data-color="#2196f3" style="background-color: #2196f3;"></div>
+
+                    <div class="color-circle" data-color="#ff007f" style="background-color: #ff007f;"></div>
+                    <!-- Adicione mais cores -->
+                </div>
+                <button type="submit">Adicionar</button>
+                </form>
+            </div>
+            </id>
         </div>
-        <div class="note">
-            <span class="note-title">Nota 1</span>
-            <span class="note-description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt</span>
-        </div>
-    </div>
-    <script src="./script.js"></script>
-    <span class="icon-credit">Icon: <a href="">Freepik</a></span>
+        <script src="./script.js"></script>
+        <span class="icon-credit">Icon: <a href="">Freepik</a></span>
 </body>
 
 </html>
