@@ -24,7 +24,7 @@ body {
     opacity: 75%;
 }
 
-#add-btn {
+#plus-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +38,7 @@ body {
     transition: 1.2s;
 }
 
-#add-btn:hover {
+#plus-btn:hover {
     transform: rotate(360deg);
     cursor: pointer;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
@@ -49,7 +49,7 @@ body {
     width: 1.3rem;
 }
 
-.note-container {
+#note-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -57,14 +57,18 @@ body {
     margin: 1rem;
 }
 
+.blur {
+    filter: blur(1px);
+}
+
 .note {
     display: flex;
     flex-direction: column;
     box-shadow: 0px 1px 4px rgba(66, 66, 66, 0.199);
-    padding: 0.5rem;
+    padding: 0.8rem;
     border-radius: 1rem;
-    height: 10rem;
-    max-width: 12rem;
+    height: 13rem;
+    width: 12rem;
     background-color: rgb(255, 255, 255);
     transition: 1s;
 }
@@ -78,8 +82,10 @@ body {
     display: flex;
     font-size: 15px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.411);
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-wrap: wrap;
+    word-break: break-all;
 }
 
 .note-description {
@@ -89,20 +95,117 @@ body {
     color: rgb(65, 65, 65);
     margin-top: 0.7rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 11rem;
+    text-wrap: wrap;
+    word-break: normal;
+    overflow-wrap: anywhere;
+
 }
 
 #popup {
     display: none;
-    position: absolute;
-    width: 25rem;
-    height: 25rem;
-    flex-direction: column;
-    align-items: center;
+    position: fixed;
+    justify-content: space-around;
+    width: 20rem;
+    height: 20rem;
+    top: 48%;
+    left: 50%;
     background-color: white;
-    padding: 2rem;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
-    border-radius: 10%;
-    gap: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.24);
+    border-radius: 4%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    /* Garante que fique por cima de tudo */
+}
+
+#popup-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#title-add {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15.3px;
+    margin: 1.5rem 0.5rem 1rem 0.5rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    resize: none;
+    width: 18rem;
+    padding-bottom: 0.3rem;
+    resize: none;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.411);
+}
+
+#description-add {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    margin: 0rem 1rem 1rem 0.6rem;
+    text-wrap: wrap;
+    height: 5.3rem;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+#note-btn-container {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+}
+
+#note-add {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: none;
+    border: none;
+    margin-top: 2.5rem;
+    font-weight: 100;
+    box-shadow: 0px 0px 2px rgba(14, 170, 0, 0.322);
+    background-color: rgb(255, 255, 255);
+    color: darkgreen;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 6%;
+    transition: 0.6s;
+    width: 6rem;
+}
+
+#note-add:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 3px rgba(14, 170, 0, 0.623);
+
+
+}
+
+#note-cancel {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: none;
+    border: none;
+    margin-top: 2.5rem;
+    font-weight: 100;
+    box-shadow: 0px 0px 2px rgba(255, 0, 0, 0.322);
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    border-radius: 6%;
+    transition: 0.6s;
+    color: rgb(212, 0, 0);
+    font-weight: bold;
+
+    width: 6rem;
+}
+
+#note-cancel:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 3px rgba(255, 0, 0, 0.623);
+
+}
+
+#color-container {
+    display: flex;
+    justify-content: start;
+    margin-left: 0.8rem;
+    margin-top: 1rem;
 }
 
 .color-picker {
@@ -112,16 +215,16 @@ body {
 }
 
 .color-circle {
-    width: 30px;
-    height: 30px;
+    width: 1.3rem;
+    height: 1.3rem;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
     transition: transform 0.2s, border 0.2s;
 }
 
-.color-circle.selecionada {
-    border: 2px solid black;
+.color-circle.select {
+    border: 1px solid rgb(0, 0, 0);
     transform: scale(1.2);
 }
 

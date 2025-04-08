@@ -11,35 +11,42 @@
 <body>
     <div class="btn-container">
         <span class="title">Notes</span>
-        <button id="add-btn">
+        <button id="plus-btn">
             <img class='img-add' src="./imgs/img_add.png" alt="Botão Adicionar">
         </button>
     </div>
-    <div class="note-container">
+
+    <div id="note-container">
         <div class="note">
-            <span class="note-title">Nota 1</span>
-            <span class="note-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt</span>
+            <span class="note-title">Lorem ipsum dolor</span>
+            <span class="note-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias velit amet
+                nihil nisi, excepturi magni nobis modi iste quos! Doloremque quisquam nobis tempora debitis voluptates
+                libero.</span>
         </div>
-        <div id="popup">
-            <input type="text" name="" id="title-add" placeholder="Título da nota">
-            <input type="text" name="" id="description-add" placeholder="Descrição da nota">
-            <div class="color-container">
+    </div>
+    <div id="popup">
+        <div id="popup-content">
+            <textarea type="text" name="" id="title-add" placeholder="Título da nota" rows="1" cols="2"
+                maxlength="20"></textarea>
+            <textarea type="text" name="" id="description-add" placeholder="Descrição da nota" rows="2" cols="20"
+                maxlength="104"></textarea>
+            <div id="color-container">
                 <div class="color-picker">
                     <div class="color-circle" data-color="#f44336" style="background-color: #f44336;"></div>
                     <div class="color-circle" data-color="#4caf50" style="background-color: #4caf50;"></div>
                     <div class="color-circle" data-color="#2196f3" style="background-color: #2196f3;"></div>
-
                     <div class="color-circle" data-color="#ff007f" style="background-color: #ff007f;"></div>
                     <!-- Adicione mais cores -->
                 </div>
-                <button type="submit">Adicionar</button>
-                </form>
             </div>
-            </id>
+            <div id="note-btn-container">
+                <button id="note-cancel" type="submit">Cancelar</button>
+                <button id="note-add" type="submit">Adicionar</button>
+            </div>
         </div>
-        <script src="./script.js"></script>
-        <span class="icon-credit">Icon: <a href="">Freepik</a></span>
+    </div>
+    <script src="./script.js"></script>
+    <span class="icon-credit">Icon: <a href="">Freepik</a></span>
 </body>
 
 </html>
