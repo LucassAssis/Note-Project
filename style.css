@@ -30,6 +30,7 @@ body {
     justify-content: center;
     background: none;
     border: none;
+    outline: none;
     border-radius: 50%;
     padding: 0.8rem;
     width: 3.3rem;
@@ -58,7 +59,8 @@ body {
 }
 
 .blur {
-    filter: blur(1px);
+    transition: 0.4s;
+    filter: blur(1.2px);
 }
 
 .note {
