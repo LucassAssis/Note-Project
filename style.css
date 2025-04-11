@@ -70,7 +70,7 @@ body {
     padding: 0.8rem;
     border-radius: 1rem;
     height: 13rem;
-    width: 12rem;
+    width: 13rem;
     background-color: rgb(255, 255, 255);
     transition: 1s;
 }
@@ -92,7 +92,7 @@ body {
 
 .note-description {
     display: flex;
-    text-align: justify;
+    text-align: left;
     font-size: 13px;
     color: rgb(65, 65, 65);
     margin-top: 0.7rem;
@@ -222,7 +222,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: transform 0.2s, border 0.2s;
+    transition: 0.3s;
 }
 
 .color-circle.select {

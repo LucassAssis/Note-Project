@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     noteAddBtn = document.getElementById("note-add")
     noteCancelBtn = document.getElementById("note-cancel");
 
+    let selectedColor = "";
+
     plusBtn.addEventListener("click", () => {
         popup.style.display = "flex";
         noteContainer.classList.add("blur");
@@ -40,15 +42,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    noteAddBtn.addEventListener("click", () => { 
+    document.querySelectorAll(".color-circle").forEach((circle) => {
+        circle.addEventListener("click", () => {
+
+            document.querySelectorAll(".color-circle").forEach(c => c.classList.remove("select"));
+
+            circle.classList.add("select");
+            selectedColor = circle.getAttribute("data-color");
+
+        });
+    });
+
+    noteAddBtn.addEventListener("click", () => {
+        if (!newTitle.value.trim() || !newDescription.value.trim()) return;
+
+
+        const note = document.createElement("div");
+        note.classList.add("note");
+        note.style.backgroundColor = selectedColor || "white";
+
+        const title = document.createElement("span");
+        title.classList.add("note-title");
+        title.textContent = newTitle.value;
+
+        const description = document.createElement("span");
+        description.classList.add("note-description");
+        description.textContent = newDescription.value;
+
+        const lightTextColors = ['#4336f4', '#ff007f'];
+        if (lightTextColors.includes(selectedColor)) {
+            spanTitle.style.color ="white"
+            spanDescription.color ="white"
+        }
+
+        note.appendChild(title);
+        note.appendChild(description);
+        noteContainer.appendChild(note);
+        popup.style.display = "none"
+
+        noteContainer.classList.remove("blur");
+        newTitle.value = "";
+        newDescription.value = "";
         saveNotes();
     })
-    
+
+
     noteCancelBtn.addEventListener("click", () => {
         popup.style.display = "none";
         newTitle.value = "";
         newDescription.value = "";
         noteContainer.classList.remove("blur");
+
     });
 
     const saveNotes = () => {
