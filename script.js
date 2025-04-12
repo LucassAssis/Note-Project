@@ -1,33 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-    plusBtn = document.getElementById("plus-btn");
-    popup = document.getElementById("popup");
-    noteContainer = document.getElementById("note-container");
-    newTitle = document.getElementById("title-add");
-    newDescription = document.getElementById("description-add");
-    noteAddBtn = document.getElementById("note-add")
-    noteCancelBtn = document.getElementById("note-cancel");
+    const plusBtn = document.getElementById("plus-btn");
+    const popup = document.getElementById("popup");
+    const noteContainer = document.getElementById("note-container");
+    const newTitle = document.getElementById("title-add");
+    const newDescription = document.getElementById("description-add");
+    const noteAddBtn = document.getElementById("note-add")
+    const noteCancelBtn = document.getElementById("note-cancel");
 
     let selectedColor = "";
 
     plusBtn.addEventListener("click", () => {
+        document.querySelectorAll(".color-circle").forEach(c => c.classList.remove("select"));
+        selectedColor = "";
         popup.style.display = "flex";
         noteContainer.classList.add("blur");
-        popup.addEventListener("keydown", (e) => {
-            if (e.key === 'Escape') {
-                popup.style.display = "none";
-                newTitle.value = "";
-                newDescription.value = "";
-                noteContainer.classList.remove("blur");
-            }
-        });
-        plusBtn.addEventListener("keydown", (e) => {
-            if (e.key === 'Escape') {
-                popup.style.display = "none";
-                newTitle.value = "";
-                newDescription.value = "";
-                noteContainer.classList.remove("blur");
-            }
-        })
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === 'Escape' && popup.style.display === "flex") {
+            popup.style.display = "none";
+            newTitle.value = "";
+            newDescription.value = "";
+            noteContainer.classList.remove("blur");
+        }
     });
 
     newTitle.addEventListener("keydown", (e) => {
@@ -42,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Adicionando evento de clique nas cores
     document.querySelectorAll(".color-circle").forEach((circle) => {
         circle.addEventListener("click", () => {
 
@@ -53,48 +49,55 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Adicionando evento de clique no botão de adicionar nota
     noteAddBtn.addEventListener("click", () => {
         if (!newTitle.value.trim() || !newDescription.value.trim()) return;
 
-
-        const note = document.createElement("div");
-        note.classList.add("note");
-        note.style.backgroundColor = selectedColor || "white";
-
-        const title = document.createElement("span");
-        title.classList.add("note-title");
-        title.textContent = newTitle.value;
-
-        const description = document.createElement("span");
-        description.classList.add("note-description");
-        description.textContent = newDescription.value;
-
-        const lightTextColors = ['#4336f4', '#ff007f'];
-        if (lightTextColors.includes(selectedColor)) {
-            spanTitle.style.color ="white"
-            spanDescription.color ="white"
-        }
-
-        note.appendChild(title);
-        note.appendChild(description);
+        const note = createTasks(newTitle.value, newDescription.value, selectedColor);
         noteContainer.appendChild(note);
         popup.style.display = "none"
-
         noteContainer.classList.remove("blur");
         newTitle.value = "";
         newDescription.value = "";
         saveNotes();
     })
 
+    // Função que cria notas 
+    const createTasks = (newTitle, newDescription, color) => {
+        const note = document.createElement("div");
+        note.classList.add("note");
+        note.style.backgroundColor = color || "white";
 
+        const title = document.createElement("span");
+        title.classList.add("note-title");
+        title.textContent = newTitle;
+
+        const description = document.createElement("span");
+        description.classList.add("note-description");
+        description.textContent = newDescription;
+
+        const lightTextColors = ['#', '#'];
+        if (lightTextColors.includes(color)) {
+            title.style.color = "white"
+            description.style.color = "white"
+            title.style.borderBottom = "1px solid white"
+        }
+        note.appendChild(title);
+        note.appendChild(description);
+
+
+        return note;
+    }
+
+    // Adicionando evento de clique no botão de cancelar
     noteCancelBtn.addEventListener("click", () => {
         popup.style.display = "none";
         newTitle.value = "";
         newDescription.value = "";
         noteContainer.classList.remove("blur");
-
     });
 
+    // Função que salva as notas no localStorage
     const saveNotes = () => {
         // Criando array notes
         const notes = [];
@@ -111,4 +114,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         localStorage.setItem("notes", JSON.stringify(notes));
     }
+
+    // Função que carrega as notas do localStorage
+    const loadNotes = () => {
+        const notes = JSON.parse(localStorage.getItem("notes"));
+        if (!notes) return; // Se não houver nada no localStorage, retorna.
+        notes.forEach((noteData) => {
+
+            const note = createTasks(noteData.title, noteData.description, noteData.color);
+            noteContainer.appendChild(note);
+        })
+    }
+    loadNotes();
 })
