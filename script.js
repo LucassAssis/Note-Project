@@ -76,15 +76,37 @@ document.addEventListener("DOMContentLoaded", () => {
         description.classList.add("note-description");
         description.textContent = newDescription;
 
+
+        const deleteDiv = document.createElement("div");
+        deleteDiv.classList.add("delete-div");
+        note.appendChild(deleteDiv);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete-btn");
+
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "./imgs/trash.png";
+        deleteIcon.classList.add("trash-icon");
+
+        deleteBtn.appendChild(deleteIcon);
+        deleteBtn.addEventListener("click", () => {
+            note.remove();
+            saveNotes();
+        })
+
+        deleteDiv.appendChild(deleteBtn)
+
+
         const lightTextColors = ['#', '#'];
         if (lightTextColors.includes(color)) {
             title.style.color = "white"
             description.style.color = "white"
             title.style.borderBottom = "1px solid white"
         }
+
         note.appendChild(title);
         note.appendChild(description);
-
+        note.appendChild(deleteDiv);
 
         return note;
     }
