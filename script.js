@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteBtn.classList.add("delete-btn");
 
         const deleteIcon = document.createElement("img");
-        deleteIcon.src = "./imgs/trash.png";
+        deleteIcon.src = "./imgs/trash-2.png";
         deleteIcon.classList.add("trash-icon");
 
         deleteBtn.appendChild(deleteIcon);
