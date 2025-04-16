@@ -269,8 +269,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-@media screen and (max-width:900px) {
-    .note-container {
+@media screen and (max-width:750px) {
+    #note-container {
         gap: 2rem;
         justify-content: center;
     }
